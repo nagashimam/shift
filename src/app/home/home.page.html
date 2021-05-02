@@ -13,7 +13,7 @@
 
   <section>
     <ion-text>
-      <h2>日付を選んでね</h2>
+      <h2 id="label-for-date">日付を選んでね</h2>
     </ion-text>
     <ion-list>
       <ng-container
@@ -23,6 +23,7 @@
           <app-date-picker-panel
             [(dates)]="shift.dates"
             [label]="shift.label"
+            aria-labelledby="label-for-date"
           ></app-date-picker-panel>
         </ion-item>
       </ng-container>
@@ -30,13 +31,27 @@
   </section>
   <section>
     <ion-text>
-      <h2>パスワードを入力してね</h2>
+      <h2 id="label-for-password">パスワードを入力してね</h2>
     </ion-text>
-    <ion-item>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
+    <form>
+      <ion-item>
+        <ion-input
+          aria-labelledby="label-for-password"
+          type="password"
+          name="password"
+          [formControl]="password"
+        ></ion-input>
+      </ion-item>
+      <ion-text *ngIf="password.invalid && password.dirty">
+        <span class="ion-invalid"
+          >{{password.getError('incorrectPassword')}}</span
+        >
+      </ion-text>
+    </form>
   </section>
   <section>
-    <ion-button (click)="add()">Googleカレンダーに追加</ion-button>
+    <ion-button [disabled]="password.invalid" (click)="add()"
+      >Googleカレンダーに追加</ion-button
+    >
   </section>
 </ion-content>
