@@ -24,4 +24,7 @@ export class DatePickerPanelComponent {
   datesChange = new EventEmitter<Date[]>();
 
   constructor() {}
+  change() {
+    this.datesChange.emit(this.dates);
+  }
 }

@@ -11,6 +11,7 @@
     placeholder="{{ label }}の日"
     name="date"
     [(ngModel)]="dates"
+    (dateChange)="change()"
   >
   </ngx-multiple-dates>
 </div>

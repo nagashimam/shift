@@ -23,7 +23,13 @@ export class HomePage {
     dates: [],
     label: '夜勤',
   };
+  password = '';
   constructor() {}
+
+  add() {
+    console.log('password:', this.password);
+    console.log('shift', this.earlyShiftDays);
+  }
 }
 
 interface Shift {
