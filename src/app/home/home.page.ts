@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,7 @@ export class HomePage {
     dates: [],
     label: '夜勤',
   };
-  constructor() {
+  constructor(private loadingController: LoadingController) {
     this.password.setAsyncValidators(async (password: AbstractControl) => {
       const input = password.value;
       const encoder = new TextEncoder();
@@ -45,10 +46,12 @@ export class HomePage {
     });
   }
 
-  add() {
-    console.log('password:', this.password.getError('incorrectPassword'));
-    console.log('invalid', this.password.invalid);
-    console.log('shift', this.earlyShiftDays);
+  async add() {
+    const loading = await this.loadingController.create({
+      message: '予定を追加中...',
+    });
+    await loading.present();
+    setTimeout(() => loading.dismiss(), 3_000);
   }
 }
 
