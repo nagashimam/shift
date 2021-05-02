@@ -1,0 +1,16 @@
+<div class="date-picker-holder">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <ion-text>
+      <span>{{ label }}の日</span>
+    </ion-text>
+    <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
+  <ngx-multiple-dates
+    [matDatepicker]="picker"
+    placeholder="{{ label }}の日"
+    name="date"
+    [(ngModel)]="dates"
+  >
+  </ngx-multiple-dates>
+</div>
